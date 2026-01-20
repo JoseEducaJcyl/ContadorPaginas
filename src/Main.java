@@ -1,13 +1,29 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-void main() {
-  //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-  // to see how IntelliJ IDEA suggests fixing it.
-  IO.println(String.format("Hello and welcome!"));
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
-  for (int i = 1; i <= 5; i++) {
-    //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-    // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-    IO.println("i = " + i);
-  }
+public class Main {
+    public static void main(String[] args) {
+        //Declaramos un scanner
+        Scanner sc = new Scanner(System.in);
+        //Declaramos un Map 'paginas'
+        Map<String, Integer> paginas = new HashMap<>();
+        //Declaramos 
+        boolean continuar = true;
+        while (continuar) {
+            System.out.println("Introduce una pagina: ");
+            String pagina = sc.nextLine().toLowerCase();
+            if (paginas.containsKey(pagina)) {
+                paginas.put(pagina, paginas.get(pagina) + 1);
+            }else if (pagina.equalsIgnoreCase("fin")) {
+                continuar = false;
+            }else {
+                paginas.put(pagina, 1);
+            }
+        }
+        System.out.println("Visitas de las paginas: ");
+        paginas.forEach((llave, valor) -> {
+            System.out.println(llave + ": " + valor);
+        });
+    }
 }
